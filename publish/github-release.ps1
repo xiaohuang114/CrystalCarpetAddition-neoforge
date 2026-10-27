@@ -42,8 +42,12 @@ function Invoke-GitHub {
     $p = @{ Method = $Method; Uri = $Uri; Headers = $H }
     if ($Body) {
         if ($ContentType -eq 'application/json') {
-            $p.Body = ($Body | ConvertTo-Json -Depth 10 -Compress)
-            $p.ContentType = 'application/json'
+            # PS 5.1 的 Invoke-RestMethod 收到 [string] 会按系统 ANSI(GBK) 编码发送，
+            # 中文正文会变成非法 UTF-8，GitHub 回 400 Problems parsing JSON。
+            # 必须自己转成 UTF-8 字节流。
+            $json = $Body | ConvertTo-Json -Depth 10 -Compress
+            $p.Body = [System.Text.Encoding]::UTF8.GetBytes($json)
+            $p.ContentType = 'application/json; charset=utf-8'
         } else {
             $p.Body = $Body
             $p.ContentType = $ContentType
@@ -79,6 +83,14 @@ if ($CreateRepo) {
             "仓库已存在，跳过创建：https://github.com/$Owner/$Repo"
         } else { throw }
     }
+}
+
+# ── 1.1 纠正仓库描述（旧脚本用 ANSI 发送，可能已写成乱码）────────
+try {
+    $fixed = Invoke-GitHub PATCH "https://api.github.com/repos/$Owner/$Repo" @{ description = $Description }
+    "仓库描述：$($fixed.description)"
+} catch {
+    "仓库描述修正失败（不影响发布）：$($_.Exception.Message)"
 }
 
 # ── 1.5 git 调用封装 ───────────────────────────────────────
