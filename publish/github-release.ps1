@@ -140,7 +140,7 @@ if ($existing -contains 'origin') {
 $pushUrl = "https://x-access-token:$Token@github.com/$Owner/$Repo.git"
 if (-not $SkipPush) {
     # 用 token 走 https，避免交互式登录
-    Invoke-Git @('push', '-u', $pushUrl, 'main:main')
+    Invoke-Git @('push', $pushUrl, 'main:main')   # 不用 -u：-u 会把带 token 的 URL 写进 .git/config
     if ($script:GitExit -ne 0) {
         # 常见原因：建仓库时 GitHub 自动生成了 initial commit（README / LICENSE），
         # 与本地历史无关，非 fast-forward 会被拒。先取远端再按 lease 覆盖。
@@ -231,6 +231,8 @@ foreach ($rel_path in $assets) {
     $full = Join-Path $root $rel_path
     if (-not (Test-Path $full)) { "跳过（不存在）：$rel_path"; continue }
     $name = Split-Path $full -Leaf
+    # GitHub 的 ?name= 对非 ASCII 会丢字符（README-安装说明.md 变成 README-.md），统一转 ASCII
+    $name = $name -replace '[^\x20-\x7E]', '-' -replace '-+', '-'
     $bytes = [System.IO.File]::ReadAllBytes($full)
 
     $uploadUri = "https://uploads.github.com/repos/$Owner/$Repo/releases/$($rel.id)/assets?name=$([uri]::EscapeDataString($name))"
