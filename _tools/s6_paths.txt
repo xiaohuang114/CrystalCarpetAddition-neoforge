@@ -1,0 +1,3 @@
+prompts\s5-验收结论与勘误.md
+prompts\s5-HANDOFF摘要.md
+prompts\s6-MagicBox与ItemShadowing.md

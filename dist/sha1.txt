@@ -1,0 +1,2 @@
+1C28F0AE915E0A4A83BD0B4B76C4CB582B8793F6  CrystalCarpetAddition-neoforge-1.21.1-1.11.1-neoforge.jar
+D256CEB4F89D6317DEE338AA9DEEA05D058E74E3  CrystalCarpetAddition-neoforge-1.21.1-1.11.1-neoforge-sources.jar

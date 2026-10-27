@@ -1,0 +1,37 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+issueTrackerURL = "https://github.com/Crystal0404/CrystalCarpetAddition/issues"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+authors = "${mod_authors}"
+description = "${mod_description}"
+logoFile = "icon.png"
+
+[[dependencies.cca]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.cca]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+# 关键：carpet 必须先加载，否则 CarpetServer 的扩展列表可能还没初始化
+[[dependencies.cca]]
+modId = "carpet"
+type = "required"
+versionRange = "[1.4.147,)"
+ordering = "BEFORE"
+side = "BOTH"
+
+[[mixins]]
+config = "cca.mixins.json"

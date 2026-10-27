@@ -1,0 +1,51 @@
+# ───────────── 移植工程内部物料（不可发布）─────────────
+# 第三方与 Mojang 版权内容，绝不能进仓库
+_ref/
+_decomp/
+_mappings/
+_src/
+_extract/
+_work/
+--only=carpet/
+CrystalCarpetAddition-v1.11.1-mc1.21.1.jar
+
+# 运行日志与探针产物
+_tools/out/
+_tools/*.jar
+*.log
+
+# AI 协作过程物料（每阶段任务书 / 粘贴包，对使用者无价值、体积大）
+prompts/
+
+# ───────────── Gradle / 构建产物 ─────────────
+cca-neoforge/.gradle/
+cca-neoforge/build/
+cca-neoforge/run/
+cca-neoforge/libs/*.jar
+!cca-neoforge/libs/README.md
+.gradle/
+build/
+run/
+*.hprof
+
+# ───────────── IDE ─────────────
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.project
+.classpath
+bin/
+out/
+
+# ───────────── OS ─────────────
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ───────────── 本地密钥 / 发布凭据 ─────────────
+.env
+*.token
+publish/secrets.ps1

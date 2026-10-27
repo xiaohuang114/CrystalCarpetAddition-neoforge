@@ -1,0 +1,37 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "crystal0404.crystalcarpetaddition.mixins",
+  "plugin": "crystal0404.crystalcarpetaddition.utils.CCAMixinConfigPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "carpet.SettingsManagerMixin",
+    "rule.AnvilCanCrushItems.FallingBlockEntityMixin",
+    "rule.ComparatorIgnoresUpdatesFromBelow.ComparatorBlockMixin",
+    "rule.EndermanCannotPickUpBlocksInNether.EndermanEntity$PickUpBlockGoalMixin",
+    "rule.EnderDragonPartCanUseEndPortal.EntityAccessor",
+    "rule.EnderDragonPartCanUseEndPortal.EntityInvoker",
+    "rule.EnderDragonPartCanUseEndPortal.MobEntityMixin",
+    "rule.EnderDragonPartCanUseEndPortal.PortalManagerAccessor",
+    "rule.GatewayCannotLoadingChunks.EndGatewayBlockMixin",
+    "rule.ItemShadowing.ScreenHandlerMixin",
+    "rule.MagicBox.BlockEntityMixin",
+    "rule.MagicBox.LecternBlockMixin",
+    "rule.MagicBox.ShulkerBoxBlockMixin",
+    "rule.MagicBox.WorldChunkMixin",
+    "rule.NoBatSpwan.BatEntityMixin",
+    "rule.StackableShulkerBoxesEnhancement.HopperBlockEntityEjectMixin",
+    "rule.StackableShulkerBoxesEnhancement.HopperBlockEntityMixin",
+    "rule.ShulkerBoxPowerOutputExpansion.ShulkerBoxBlockMixin",
+    "rule.ReIntroduceOldVersionWitchLootTable.LivingEntityMixin",
+    "rule.ReIntroduceOldVersionRaid.BadOmenStatusEffectMixin",
+    "rule.ReIntroduceOldVersionRaid.RaiderEntityMixin",
+    "rule.ReIntroduceOldVersionRaid.RaidMixin"
+  ],
+  "client": [
+    "rule.WhatIsThis.Happy"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
